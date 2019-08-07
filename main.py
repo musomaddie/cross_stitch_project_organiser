@@ -13,3 +13,8 @@ def main_page():
 @app.route('/threads')
 def threads_main():
     return render_template("threads_main.html")
+
+
+@app.route("/threads/add")
+def threads_add():
+    return render_template("threads_add.html")
