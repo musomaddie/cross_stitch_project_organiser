@@ -13,7 +13,7 @@ def init_db():
     cur.execute('''
                 CREATE TABLE threads (
                     colour TEXT PRIMARY KEY,
-                    amount FLOAT
+                    amount_have FLOAT
                 );
             ''')
 

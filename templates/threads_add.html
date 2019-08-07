@@ -6,6 +6,13 @@
 
 <body>
 	<h1> Threads Add </h1>
-
+	
+	<form method="POST" action="{{url_for('threads_add')}}">
+		<input type="text" name="dmc" placeholder="Enter the DMC number"
+								required />
+		<input type="text" name="amount_have" placeholder="Enter the amount you
+		currently have" required />
+		<button type="submit"> Add Thread</button>
+	</form>
 </body>
 </html>
