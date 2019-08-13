@@ -2,7 +2,7 @@ import sqlite3
 
 
 def init_db():
-    db_name = "Cross_Stitch_Supplies"
+    db_name = "Cross_Stitch_Supplies.db"
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
 
