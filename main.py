@@ -24,7 +24,7 @@ def threads_add():
     added_successfully = db.add_new_thread(dmc_thread,
                                            request.form['amount_have'])
     if not added_successfully:
-        flash("{} is already added".format(dmc_thread))
+        flash("Could not add {}".format(dmc_thread))
         return render_template("threads_add.html")
     flash("{} added!".format(dmc_thread))
     return render_template("threads_add.html")
