@@ -16,6 +16,13 @@ def threads_main():
     return render_template("threads_main.html")
 
 
+@app.route('/threads/view')
+def threads_view():
+    return render_template("threads_view.html")
+
+
+# TODO: centralise all of this into a generic thread page (deal with changing
+# links etc later)
 @app.route("/threads/add", methods=["GET", "POST"])
 def threads_add():
     if request.method == "GET":
