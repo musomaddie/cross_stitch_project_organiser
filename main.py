@@ -18,7 +18,10 @@ def threads_main():
 
 @app.route('/threads/view')
 def threads_view():
-    return render_template("threads_view.html")
+    # Assuming will be viewing a table of all thread information. Add page or
+    # pop up for single thread?
+    return render_template("threads_view.html",
+                           all_threads=db.get_all_threads())
 
 
 # TODO: centralise all of this into a generic thread page (deal with changing
