@@ -75,8 +75,13 @@ def _read_all_threads_db():
     cur = conn.cursor()
     try:
         cur.execute(""" SELECT * FROM threads """)
-        return cur.fetchall()
+        result = cur.fetchall()
+        cur.close()
+        conn.close()
+        return result
     except Exception:
+        cur.close()
+        conn.close()
         return []
 
 
@@ -112,12 +117,14 @@ def get_all_threads():
     """
     all_threads = []
     threads = _read_all_threads_db()
+    print("getting all threads")
 
     # Put them in sorted order before adding to list
     threads_sorted = _dmc_sort(threads)
     for thread in threads_sorted:
         all_threads.append({"dmc": thread[0],
                             "amount have": thread[1]})
+    print(all_threads)
     return all_threads
 
 

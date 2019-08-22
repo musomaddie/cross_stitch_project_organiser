@@ -4,16 +4,42 @@
 <head>
 </head>
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+	{% for message in messages %}
+	<li>
+		{{ message }}
+	</li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
 <body>
-	<h1> 
-		Threads </h1>
-	<h2>
-		<a href="{{url_for('threads_add')}}"> Add New </a>
-	</h2>
-	<h2> Adjust Quantities </h2>
-	<h2> 
-		<a href="{{url_for('threads_view')}}"> View </a>
-	</h2>
+
+	<h1> Add A New Thread </h1>
+	
+	<form method="POST" action="{{url_for('threads_main')}}">
+		<input type="text" name="dmc" placeholder="Enter the DMC number"
+								required />
+		<input type="text" name="amount_have" placeholder="Amount have"/>
+		<button type="submit"> Add Thread</button>
+	</form>
+
+	<h1> All Threads </h1>
+	<table>
+		<tr>
+			<th> DMC </th>
+			<th> Amount Owned </th>
+		</tr>
+		{% for thread in all_threads %}
+		<tr>
+			<td> {{ thread["dmc"] }} </td>
+			<td> {{ thread["amount have"] }} </td>
+		</tr>
+		{% endfor %}
+	</table>
 
 </body>
 </html>
