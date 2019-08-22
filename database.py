@@ -33,6 +33,8 @@ def _dmc_compare(v1, v2):
 def _dmc_sort(threads):
     # INPUT: list of tuples, 0 index in tuple is dmc name
     # Merge sort implementation using special sorting rules
+    if len(threads) == 0:
+        return []
 
     if len(threads) == 1:
         return threads
