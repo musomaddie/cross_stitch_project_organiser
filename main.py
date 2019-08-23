@@ -16,9 +16,13 @@ def threads_main():
     if request.method == "GET":
         return render_template("threads_main.html",
                                all_threads=db.get_all_threads())
+    # TODO: update all threads to be stored in advance and updated as
+    # appropriate
     dmc_thread = request.form['dmc']
     added_successfully = db.add_new_thread(dmc_thread,
-                                           request.form['amount_have'])
+                                           request.form['amount_have'],
+                                           request.form[
+                                               "identifier"] == "update")
     if not added_successfully:
         flash("Could not add {}".format(dmc_thread))
         return render_template("threads_main.html",

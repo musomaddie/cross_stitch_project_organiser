@@ -24,7 +24,7 @@
 		<input type="text" name="dmc" placeholder="Enter the DMC number"
 								required />
 		<input type="text" name="amount_have" placeholder="Amount have"/>
-		<button type="submit"> Add Thread</button>
+		<button type="submit" name="identifier" value="new"> Add Thread</button>
 	</form>
 
 	<h1> All Threads </h1>
@@ -36,7 +36,16 @@
 		{% for thread in all_threads %}
 		<tr>
 			<td> {{ thread["dmc"] }} </td>
-			<td> {{ thread["amount have"] }} </td>
+			<td> 
+				<form method="POST" action="{{url_for('threads_main')}}">
+					<input type="hidden" name="dmc" value="{{thread['dmc']}}" />
+					<input type="text" name="amount_have"
+							value="{{thread['amount have']}}" />
+					<button type="sumbit" name="identifier" value="update">
+						Update
+					</button>
+				</form>
+			</td>
 		</tr>
 		{% endfor %}
 	</table>

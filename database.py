@@ -93,15 +93,21 @@ def _check_number(n):
         return False
 
 
-def add_new_thread(thread_name, amount_have):
+def add_new_thread(thread_name, amount_have, update=False):
     # TODO: add documentation
     conn = sqlite3.connect(MY_DATABASE)
     cur = conn.cursor()
     if not _check_number(amount_have):
         return False
     try:
-        cur.execute(""" INSERT INTO threads
-                        VALUES (?, ?);""", (thread_name, amount_have))
+        if update:
+            cur.execute(""" UPDATE threads
+                            SET amount_have=?
+                            WHERE colour==?;""",
+                        (amount_have, thread_name))
+        else:
+            cur.execute(""" INSERT INTO threads
+                            VALUES (?, ?);""", (thread_name, amount_have))
     except Exception:
         return False
     conn.commit()
@@ -124,6 +130,8 @@ def get_all_threads():
         all_threads.append({"dmc": thread[0],
                             "amount have": thread[1]})
     return all_threads
+
+
 
 
 if __name__ == "__main__":
